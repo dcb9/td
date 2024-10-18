@@ -8,6 +8,12 @@ type peerIDSet struct {
 	m map[constant.TDLibPeerID]struct{}
 }
 
+func newPeerIDSet() peerIDSet {
+	return peerIDSet{
+		m: make(map[constant.TDLibPeerID]struct{}),
+	}
+}
+
 func (p *peerIDSet) add(ids ...constant.TDLibPeerID) {
 	for _, id := range ids {
 		p.m[id] = struct{}{}

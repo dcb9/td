@@ -30,11 +30,13 @@ func (o *Options) setDefaults() {
 func (o Options) Build(api *tg.Client) *Manager {
 	o.setDefaults()
 	return &Manager{
-		api:     api,
-		storage: o.Storage,
-		cache:   o.Cache,
-		me:      new(atomicUser),
-		logger:  o.Logger,
-		sg:      singleflight.Group{},
+		api:            api,
+		storage:        o.Storage,
+		cache:          o.Cache,
+		me:             new(atomicUser),
+		logger:         o.Logger,
+		sg:             singleflight.Group{},
+		needUpdate:     newPeerIDSet(),
+		needUpdateFull: newPeerIDSet(),
 	}
 }
